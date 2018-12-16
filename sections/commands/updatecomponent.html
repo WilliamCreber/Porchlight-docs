@@ -1,0 +1,30 @@
+<html>
+	<body>
+		<h1>UpdateComponent</h1>
+		<p/>
+
+		<h4>Description</h4>
+		<p>UpdateComponent updates the attribute(s) of a specified component of a certain actor.</p>
+		
+		<h4>Example</h4>
+		<pre>UpdateComponent+
+			{
+				"actor":$THIS,
+				"component":"position",
+				"luneid":$CURRENT,
+				"controller":$CURRENT
+			}+
+			{
+				"longitude":16.555248
+			}
+		</pre>
+
+		<h5>Notes:</h5>
+		<ul>
+			<li>Attributes of the Address Object generally have default values that imply access to $THIS object.</li>
+			<li>Unless stated, attributes of both the Address Object and the Arugment Object are optional</li>
+			<li>Attributes that have no bearing on either the Address Object or the Component Argument Object will be ignored</li>
+			<li>If an actor does not have a certain component, the command will be ignored. Use [link]CreateComponent instead.</li>
+		</ul>
+	</body>
+</html>
