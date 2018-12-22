@@ -1,0 +1,148 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="../../css/feature_progress.css"/>
+		<link rel="stylesheet" href="../../css/fonts.css"/>
+		<link rel="stylesheet" href="../../css/tables.css"/>
+		
+		<link rel="stylesheet" href="../../plugins/prism/prism.css"/>
+	</head>
+	<body>
+		<script src="../../plugins/jquery/jquery-3_3_1-min.js"></script>
+		<script src="../../plugins/prism/prism.js"></script>
+		<script src="../../shared/js/table_functions.js"></script>
+		
+		<div id="progress_banner">
+			<span class="leftCorner complete">Is Complete</span>
+			<span class="center inDevelopment">In Development</span>
+			<span class="center isConcept">In Planning</span>
+			<div class="rightCorner toRemove">To Remove</div>
+		</div>
+		<br>
+		<div>
+			<div class="pageHeader">Block</div>
+			<div class="pageTags">	-tags: actor, no-visual, block, commands</div>
+		</div>
+		
+		<br><br>
+		
+		<div>
+			<div class="sectionHeader">Description</div>
+			<div> Blocks are containers for shared Commands{$addlink}. They have no visual component and as such, an app can contain many more block actors than other visual actors.</div>
+		</div>
+		
+		<br><br>
+		
+		<div>
+			<div class="sectionHeader">Features</div>
+			<div>
+				<table class="featureTable">
+					<tr>
+						
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+		<br><br>
+		
+		<div>
+			<div class="sectionHeader">Allowed Components</div>
+			<div class="sizeLimit">
+				<table class="componentTable">
+					<thead>
+						<tr>
+							<th rowspan="2" class="cp1 darkercolor">Component</th>
+							<th colspan="5" class="cp2 darkercolor">Attribute Info</th>
+							<th rowspan="2" class="cp1 lightcolor">Status</th> 
+						</tr>
+						<tr>
+							<th class="cp3 name lightcolor">Name</th>
+							<th class="cp3 type lightcolor">Type</th>
+							<th class="cp3 type lightcolor">Default</th>
+							<th class="cp3 required lightcolor">Required/Optional?</th>
+							<th class="cp3 desc lightcolor">Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<script>addComponentToTable("Identity",
+													[	new Attribute("name","String","-----","Required","Used as a unique identifier to access this actor."),
+														new Attribute("name","String","-----","Required","Used as a unique identifier to access this actor.")
+													], "inDevelopment");</script>
+					<!--
+						<tr>
+							<td colspan="6" style="height:5px;"/>
+						</tr>
+						<tr>
+							<td rowspan="2" class="cp1 darkercolor">Identity</td>
+							<td class="cp3 name lightcolor">name</td>
+							<td class="cp3 type lightcolor">String</td>
+							<td class="cp3 type lightcolor"> ---- </td>
+							<td class="cp3 required lightcolor">Required</td>
+							<td class="cp3 desc lightcolor">Used as a unique identifier to access this actor.</td>
+							<td rowspan="2" class="cp1 lightcolor"><div class="solo inDevelopment centerDiv">In Development</div></td>
+						</tr>
+						<tr>
+							<td class="cp3 name lightcolor">tags</td>
+							<td class="cp3 type lightcolor">String</td>
+							<td class="cp3 type lightcolor"/>
+							<td class="cp3 required lightcolor">Optional</td>
+							<td class="cp3 desc lightcolor">Used to determine selection qualifications for commands such as ActivateByTag.</td>
+						</tr>
+						<tr>
+							<td colspan="6" style="height:5px;"/>
+						</tr>
+						<tr>
+							<td rowspan="1" class="cp1 darkercolor">State</td>
+							<td class="cp3 name lightcolor">activated</td>
+							<td class="cp3 type lightcolor">Boolean</td>
+							<td class="cp3 type lightcolor">true</td>
+							<td class="cp3 required lightcolor">Optional</td>
+							<td class="cp3 desc lightcolor">Used to control internal components. Ex. Execute, timer, etc will not run if activated is false.</td>
+							<td rowspan="1" class="cp1 lightcolor"><div class="solo inDevelopment centerDiv">In Development</div></td>
+						</tr>
+						<tr>
+							<td colspan="6" style="height:5px;"/>
+						</tr>
+						<tr>
+							<td rowspan="2" class="cp1 darkercolor">Timer</td>
+							<td class="cp3 name lightcolor">timespan</td>
+							<td class="cp3 type lightcolor">String</td>
+							<td class="cp3 type lightcolor">null</td>
+							<td class="cp3 required lightcolor">Required</td>
+							<td class="cp3 desc lightcolor">Used to dictate length of time from start before time executes the completion event.</td>
+							<td rowspan="2" class="cp1 lightcolor"><div class="solo inDevelopment centerDiv">In Development</div></td>
+						</tr>
+						<tr>
+							<td class="cp3 name lightcolor">tags</td>
+							<td class="cp3 type lightcolor">String</td>
+							<td class="cp3 type lightcolor"/>
+							<td class="cp3 required lightcolor">Optional</td>
+							<td class="cp3 desc lightcolor">Used to determine selection qualifications for commands such as ActivateByTag.</td>
+						</tr>
+						-->
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+		<div>
+			<div class="sectionHeader">Examples</div>
+			<p class="usecase">When declaring a block in XML, {Component}Identity and {Component}State must be explicitly used, either in a child element or using the attributes in the parent tag.
+			
+			</p>
+			<pre style="width:50%" class="language-xml">
+				<code><!--
+					<block>
+						<identity name="block_1" tags="on_start,button_2"/>
+						<state activated="true"/>
+					</block>
+				--></code>
+			</pre>
+		</div>
+
+		<h5>Notes:</h5>
+		<ul>
+			<li></li>
+		</ul>
+	</body>
+</html>
