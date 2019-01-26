@@ -1,0 +1,106 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="../../css/feature_progress.css"/>
+		<link rel="stylesheet" href="../../css/fonts.css"/>
+		<link rel="stylesheet" href="../../css/tables.css"/>
+		
+		<link rel="stylesheet" href="../../plugins/prism/prism.css"/>
+	</head>
+	<body>
+		<script src="../../plugins/jquery/jquery-3_3_1-min.js"></script>
+		<script src="../../plugins/prism/prism.js"></script>
+		<script src="../../shared/js/table_functions.js"></script>
+		
+		
+		<!-- HOME -->
+		<div style="position: absolute; top: 15px; right: 25px;">
+			<a href="../../index.html">Home</a>
+		</div>
+		<!-- MAIN -->
+		<div>
+			<div class="pageHeader">Trigger</div>
+			<div class="pageTags">	-tags: timer, trigger, optional, component, actors</div>
+		</div>
+		
+		<br><br>
+		
+		<div>
+			<div class="sectionHeader">Description</div>
+			<div>The Trigger component attaches a listener and emitter of event words to an actor. A Trigger can also be delayed via a timespan to act as a timer.</div>
+		</div>
+		
+		<br><br>
+		
+		<div>
+			<div class="sectionHeader">Attributes</div>
+			<div class="sizeLimit">
+				<table id="attributeTable" class="componentTable">
+					<thead>
+						<tr>
+							<th class="cp1 darkercolor">Attribute</th>
+							<th colspan="5" class="cp2 darkercolor">Info</th>
+							<th rowspan="2" class="cp1 lightcolor">Status</th>
+						</tr>
+						<tr>
+							<th class="cp3 name lightcolor">Name</th>
+							<th class="cp3 type lightcolor">Required?</th>
+							<th class="cp3 type lightcolor">Type</th>
+							<th class="cp3 type lightcolor">Default</th>
+							<th class="cp3 type lightcolor">Merge With Internal?</th>
+							<th class="cp3 desc lightcolor">Description</th> 
+						</tr>
+					</thead>
+					<tbody>
+						<tr><td colspan="6" style="height:5px;"></tr>
+						<script>
+						addAttributeToTable("timespan", "No", "<a href=\"../../sections/utilities/time_string.html\">Time String</a>", "0", "No", "The timespan attribute controls how long the countdown is from timer start. ", "inDevelopment");
+						
+						addAttributeToTable("listen_for", "Yes", "String Array", "-required-", "No", "The listen_for attribute is the event name the component listens for. When it hears the event, the countdown will start.", "inDevelopment");
+						
+						addAttributeToTable("trigger_event", "Yes", "String Array", "-required-", "No", "The trigger_event attribute is the event name the component will emit when the countdown has completed.", "inDevelopment");
+						
+						addAttributeToTable("ignore_state", "No", "Boolean", "false", "No", "The ignore_state attribute dictates if the trigger will have the same state as the actor. If yes, any trigger or countdown is impossible while the actor is inactive.", "isConcept");
+						</script>
+					</tbody>
+				</table>
+			</div>
+		</div>
+				
+		<br><br>
+		<div>
+			<div class="sectionHeader">Examples</div>
+			<p class="usecase">When declaring ...
+			</p>
+			<pre style="width:60%" class="language-xml">
+				<code><!--
+					<window>
+						...
+						<trigger listen_for="on_start" trigger_event="$INNER.execute"/>
+						
+						<execute>
+							...
+						</execute>
+					</window>
+				--></code>
+			</pre>
+			<span> OR </span>
+			<pre style="width:60%" class="language-xml">
+				<code><!--
+					<block>
+						...
+						<trigger listen_for="on_deactivate" trigger_event="$INNER.wakeup" timespan="30s" ignore_state="true"/>
+						
+						<execute inner_trigger="wakeup">
+							...
+						</execute>
+					</block>
+				--></code>
+			</pre>
+		</div>
+
+		<h5>Notes:</h5>
+		<ul>
+			<li>Actors will use the same-level attributes first before internal(child) attributes. Top-level takes preference and unless stated, lower-level will replace undefined attributes.</li>
+		</ul>
+	</body>
+</html>

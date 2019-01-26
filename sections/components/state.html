@@ -1,0 +1,95 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="../../css/feature_progress.css"/>
+		<link rel="stylesheet" href="../../css/fonts.css"/>
+		<link rel="stylesheet" href="../../css/tables.css"/>
+		
+		<link rel="stylesheet" href="../../plugins/prism/prism.css"/>
+	</head>
+	<body>
+		<script src="../../plugins/jquery/jquery-3_3_1-min.js"></script>
+		<script src="../../plugins/prism/prism.js"></script>
+		<script src="../../shared/js/table_functions.js"></script>
+		
+		
+		<!-- HOME -->
+		<div style="position: absolute; top: 15px; right: 25px;">
+			<a href="../../index.html">Home</a>
+		</div>
+		<!-- MAIN -->
+		<div>
+			<div class="pageHeader">State</div>
+			<div class="pageTags">	-tags: state, optional, component, actors</div>
+		</div>
+		
+		<br><br>
+		
+		<div>
+			<div class="sectionHeader">Description</div>
+			<div>The state component controls whether the actor is active (visible/interactable), whether the actor prevents the current lune from going to idle and how the actor reacts to other actors within a set range.</div>
+		</div>
+		
+		<br><br>
+		
+		<div>
+			<div class="sectionHeader">Attributes</div>
+			<div class="sizeLimit">
+				<table id="attributeTable" class="componentTable">
+					<thead>
+						<tr>
+							<th class="cp1 darkercolor">Attribute</th>
+							<th colspan="5" class="cp2 darkercolor">Info</th>
+							<th rowspan="2" class="cp1 lightcolor">Status</th>
+						</tr>
+						<tr>
+							<th class="cp3 name lightcolor">Name</th>
+							<th class="cp3 type lightcolor">Required?</th>
+							<th class="cp3 type lightcolor">Type</th>
+							<th class="cp3 type lightcolor">Default</th>
+							<th class="cp3 type lightcolor">Merge With Internal?</th>
+							<th class="cp3 desc lightcolor">Description</th> 
+						</tr>
+					</thead>
+					<tbody>
+						<tr><td colspan="6" style="height:5px;"></tr>
+						<script>
+						addAttributeToTable("activated", "No", "Boolean", "true", "No", "The activated attribute dictates whether the actor is active. Most components can be stopped if false unless explicitly stated.", "inDevelopment");
+						
+						addAttributeToTable("block_idle", "No", "Boolean", "false", "No", "The block_idle attribute controls whether the current lune can switch to idle while the actor is active or not.", "isConcept");
+						
+						addAttributeToTable("proximity", "No", "String Array", "", "No", "The proximity attribute controls the minimum distance (left,top,right,bottom or mirrored left,top) between the current actor and another active actor. Should another be activated within the proximity range, the current actor will be deactivated. [Note] may move proximity to standalone component.", "isConcept");
+						</script>
+					</tbody>
+				</table>
+			</div>
+		</div>
+				
+		<br><br>
+		<div>
+			<div class="sectionHeader">Examples</div>
+			<p class="usecase">When declaring ...
+			</p>
+			<pre style="width:60%" class="language-xml">
+				<code><!--
+					<layer activated="false" block_idle="true">
+						...
+					</layer>
+				--></code>
+			</pre>
+			<span> OR </span>
+			<pre style="width:60%" class="language-xml">
+				<code><!--
+					<window>
+						<state block_idle="true" proximity="TBD"/>
+						...
+					</window>
+				--></code>
+			</pre>
+		</div>
+
+		<h5>Notes:</h5>
+		<ul>
+			<li>Actors will use the same-level attributes first before internal(child) attributes. Top-level takes preference and unless stated, lower-level will replace undefined attributes.</li>
+		</ul>
+	</body>
+</html>

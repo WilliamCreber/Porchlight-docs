@@ -37,8 +37,9 @@
 	padding: 5px 10px 5px 10px;
 	text-align: center;
 	
-	height: 35px;
+	height: 40px;
 }
+
 .cp3.name {
 	min-width: 85px;
 }
@@ -53,6 +54,18 @@
 	
 	white-space: normal;
 	overflow-wrap: break-word;
+}
+
+.horizontal-spacer {
+	width: 10px;
+}
+
+.vertical-spacer {
+	height: 5px;
+}
+
+.horizontal-spacer, .vertical-spacer {
+	border-style: none;
 }
 
 thead .lightcolor {

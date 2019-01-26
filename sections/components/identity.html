@@ -1,0 +1,108 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="../../css/feature_progress.css"/>
+		<link rel="stylesheet" href="../../css/fonts.css"/>
+		<link rel="stylesheet" href="../../css/tables.css"/>
+		
+		<link rel="stylesheet" href="../../plugins/prism/prism.css"/>
+	</head>
+	<body>
+		<script src="../../plugins/jquery/jquery-3_3_1-min.js"></script>
+		<script src="../../plugins/prism/prism.js"></script>
+		<script src="../../shared/js/table_functions.js"></script>
+		
+		
+		<!-- HOME -->
+		<div style="position: absolute; top: 15px; right: 25px;">
+			<a href="../../index.html">Home</a>
+		</div>
+		<!-- MAIN -->
+		<div>
+			<div class="pageHeader">Identity</div>
+			<div class="pageTags">	-tags: identity, required, component, actors</div>
+		</div>
+		
+		<br><br>
+		
+		<div>
+			<div class="sectionHeader">Description</div>
+			<div>The Identity component is unique to each actor in the scene. Each actor has one, but only certain attributes are used by each actor type.</div>
+		</div>
+		
+		<br><br>
+		
+		<div>
+			<div class="sectionHeader">Attributes</div>
+			<div class="sizeLimit">
+				<table id="attributeTable" class="componentTable">
+					<thead>
+						<tr>
+							<th class="cp1 darkercolor">Attribute</th>
+							<th colspan="5" class="cp2 darkercolor">Info</th>
+							<th rowspan="2" class="cp1 lightcolor">Status</th>
+						</tr>
+						<tr>
+							<th class="cp3 name lightcolor">Name</th>
+							<th class="cp3 type lightcolor">Required?</th>
+							<th class="cp3 type lightcolor">Type</th>
+							<th class="cp3 type lightcolor">Default</th>
+							<th class="cp3 type lightcolor">Merge With Internal?</th>
+							<th class="cp3 desc lightcolor">Description</th> 
+						</tr>
+					</thead>
+					<tbody>
+						<tr><td colspan="6" style="height:5px;"></tr>
+						<script>
+						addAttributeToTable("name", "Yes", "String", null, "No", "The name attribute is unique across all actors in the scene. It is the address for which other actors can access the current actor.", "complete");
+						
+						addAttributeToTable("reference", "No", "String", "", "No", "The reference attribute dictates which actor (of the same type) the current actor inherits other components and missing attributes from. It can only inherit from one actor.", "inDevelopment");
+						
+						addAttributeToTable("reference_order", "No", "Integer", "0", "No", "In the case that multiple inheritance is ever added, reference_order will control which actor is inherited first and which components will be used.", "isConcept");
+						
+						addAttributeToTable("tags", "No", "String Array", "", "Yes", "The tags attribute are the string(s) that can be used to access this actor via commands.", "inDevelopment");
+						</script>
+					</tbody>
+				</table>
+			</div>
+		</div>
+				
+		<br><br>
+		<div>
+			<div class="sectionHeader">Examples</div>
+			<p class="usecase">When declaring ...
+			</p>
+			<pre style="width:60%" class="language-xml">
+				<code><!--
+					<window name="window_1" reference="WINDOW_ICON" tags="start,refresh">
+						...
+					</window>
+				--></code>
+			</pre>
+			<span> OR </span>
+			<pre style="width:60%" class="language-xml">
+				<code><!--
+					<block>
+						<identity name="generator_alpha"/>
+						...
+					</block>
+				--></code>
+			</pre>
+			<span> OR </span>
+			<pre style="width:60%" class="language-xml">
+				<code><!--
+					<!- compiled component would have { name="exit_1" reference="WINDOW_ICON" tags="tag1,tag2" } ->
+					
+					<window name="exit_1" tags="tag1">
+						<identity name="jazz_icon" reference="WINDOW_ICON" tags="tag2"/>
+						...
+					</window>
+				--></code>
+			</pre>
+		</div>
+
+		<h5>Notes:</h5>
+		<ul>
+			<li>Actors will use the same-level attributes first before internal(child) attributes. Top-level takes preference and unless stated, lower-level will replace undefined attributes.</li>
+		</ul>
+	</body>
+</html>

@@ -1,0 +1,120 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="../../css/feature_progress.css"/>
+		<link rel="stylesheet" href="../../css/fonts.css"/>
+		<link rel="stylesheet" href="../../css/tables.css"/>
+		
+		<link rel="stylesheet" href="../../plugins/prism/prism.css"/>
+	</head>
+	<body>
+		<script src="../../plugins/jquery/jquery-3_3_1-min.js"></script>
+		<script src="../../plugins/prism/prism.js"></script>
+		<script src="../../shared/js/table_functions.js"></script>
+		
+		
+		<!-- HOME -->
+		<div style="position: absolute; top: 15px; right: 25px;">
+			<a href="../../index.html">Home</a>
+		</div>
+		<!-- MAIN -->
+		<div>
+			<div class="pageHeader">Execute</div>
+			<div class="pageTags">	-tags: execute, optional, component, actors</div>
+		</div>
+		
+		<br><br>
+		
+		<div>
+			<div class="sectionHeader">Description</div>
+			<div>The Execute component is the Command container of the actor. Each Execute component can hold a list of Commands that are executed on a specific inner trigger word.</div>
+		</div>
+		
+		<br><br>
+		
+		<div>
+			<div class="sectionHeader">Attributes</div>
+			<div class="sizeLimit">
+				<table id="attributeTable" class="componentTable">
+					<thead>
+						<tr>
+							<th class="cp1 darkercolor">Attribute</th>
+							<th colspan="5" class="cp2 darkercolor">Info</th>
+							<th rowspan="2" class="cp1 lightcolor">Status</th>
+						</tr>
+						<tr>
+							<th class="cp3 name lightcolor">Name</th>
+							<th class="cp3 type lightcolor">Required?</th>
+							<th class="cp3 type lightcolor">Type</th>
+							<th class="cp3 type lightcolor">Default</th>
+							<th class="cp3 type lightcolor">Merge With Internal?</th>
+							<th class="cp3 desc lightcolor">Description</th> 
+						</tr>
+					</thead>
+					<tbody>
+						<tr><td colspan="6" style="height:5px;"></tr>
+						<script>
+						addAttributeToTable("inner_trigger", "No", "String", "on_execute", "Can't be on base element", "The inner_trigger attribute is the internal event listener. Only predefined events or custom events from internal <a href=\"../../sections/components/trigger.html\">Triggers</a> or <a href=\"../../sections/components/timer.html\">Timers</a> that start with $INNER.eventname.", "inDevelopment");
+						</script>
+					</tbody>
+				</table>
+			</div>
+		</div>
+				
+		<br><br>
+		<div>
+			<div class="sectionHeader">Examples</div>
+			<p class="usecase">When declaring ...
+			</p>
+			<pre style="width:60%" class="language-xml">
+				<code><!--
+					<window>
+						...
+						<execute inner_trigger="on_load">
+							command1;
+							command2;
+							command3
+						</execute>
+					</window>
+				--></code>
+			</pre>
+			<span> OR </span>
+			<pre style="width:60%" class="language-xml">
+				<code><!--
+					<!- using no defined inner_trigger; thus using the default inner_trigger="on_execute" ->
+					
+					<block>
+						...
+						<execute>
+							command1
+						</execute>
+					</block>
+				--></code>
+			</pre>
+			<span> OR </span>
+			<pre style="width:60%" class="language-xml">
+				<code><!--
+					<block>
+						...
+						<execute inner_trigger="on_load">
+							command1;
+						</execute>
+						<execute>
+							command2;
+						</execute>
+						<execute inner_trigger="on_deactivate">
+							command3;
+							command4
+						</execute>
+					</block>
+				--></code>
+			</pre>
+		</div>
+
+		<h5>Notes:</h5>
+		<ul>
+			<li>Actors will use the same-level attributes first before internal(child) attributes. Top-level takes preference and unless stated, lower-level will replace undefined attributes.</li>
+			<li>Commands are seperated by semi-colons(;). This character should not be used anywhere in the command-line except to seperate one command from another.</li>
+			<li>Commands are sanitized of extra leading and/or trailing whitespace.</li>
+		</ul>
+	</body>
+</html>

@@ -1,40 +1,136 @@
-function Attribute(name, type, typedefault, required, desc){
+$(document).ready(function(){
+	if(typeof(window.location.hash) !== 'undefined' && window.location.hash.length > 0)
+	{
+		var offset = $(window.location.hash).offset();
+		offset = offset.top - 75;
+		
+		$('html,body').animate({scrollTop: offset}, 10);
+	}	
+});
+
+
+function Component(name, path, required, attributes)
+{
 	this.name = name;
-	this.type = type;
-	this.typedefault = typedefault;
+	this.path = path;
 	this.required = required;
-	this.desc = desc;
+	this.attributes = attributes;
+}
+function AttributeInfo(name, id, hasDefault)
+{
+	this.name = name;
+	this.id = id;
+	this.hasDefault = hasDefault;
 }
 
-function addComponentToTable(component, attributes, status){
-	var $table = $(".componentTable > tbody");
+function createLink(name, path, id = null)
+{
+	var fullPath = path + ((id !== null) ? "#attributeTable" : "");
 	
-	$table.append("<tr><td colspan=\"7\" style=\"height:5px;\"/></tr>");
+	return "<a href=\"" + fullPath + "\">" + name + "<\a>";
+}
+
+function addComponentToTable(tableId, component, status)
+{
+	var $table = $("#" + tableId + " > tbody");
 	
-	attributes.forEach(function(attrib, index, array){
+	var spacer = "<td colspan=\"" + 3 + "\" class=\"vertical-spacer\"/>";
+	spacer += "<td class=\"vertical-spacer horizontal-spacer\"/>";
+	spacer += "<td colspan=\"" + 2 + "\" class=\"vertical-spacer\"/>";
+	$table.append("<tr>" + spacer + "</tr>");
+	
+	component.attributes.forEach(function(attribInfo, index, array){
 		var st = "<tr>";
 		
 		var row = "";
 		
-		row += "<td class=\"cp3 name lightcolor\">" + attrib.name + "</td>";
-		row += "<td class=\"cp3 type lightcolor\">" + attrib.type + "</td>";
-		row += "<td class=\"cp3 type lightcolor\">" + attrib.typedefault + "</td>";
-		row += "<td class=\"cp3 required lightcolor\">" + attrib.required + "</td>";
-		row += "<td class=\"cp3 desc lightcolor\">" + attrib.desc + "</td>";
+		row += "<td class=\"cp3 name lightcolor\">" + createLink(attribInfo.name, component.path, attribInfo.id) + "</td>";
+		row += "<td class=\"cp3 required lightcolor\">" + attribInfo.hasDefault + "</td>";
 		
 		if(index == 0)
 		{
-			st += "<td rowspan=\"2\" class=\"cp1 darkercolor\">" + component + "</td>";
+			//do component info
+			st += "<td rowspan=\"" + component.attributes.length + "\" class=\"cp1 lightcolor\">" + createLink(component.name, component.path) + "</td>";
+			st += "<td rowspan=\"" + component.attributes.length + "\" class=\"cp1 lightcolor\">" + component.required + "</td>";
+			
+			var statusString = "";
+			switch(status)
+			{
+				case "inDevelopment":
+					statusString = "In Development";
+					break;
+				case "complete":
+					statusString = "Completed";
+					break;
+				case "isConcept":
+					statusString = "In Planning";
+					break;
+				case "toRemove":
+					statusString = "May Remove";
+					break;	
+				default:
+					break;
+			}
+			st += "<td rowspan=\"" + component.attributes.length + "\" class=\"cp1 lightcolor\"><div class=\"solo " + status + " centerDiv\">" + statusString + "</div></td>";
+			
+			//splitter column
+			st += "<td rowspan=\"" + component.attributes.length + "\" class=\"horizontal-spacer\"></td>";
+			
 			st += row;
-			st += "<td rowspan=\"2\" class=\"cp1 lightcolor\"><div class=\"solo inDevelopment centerDiv\">In Development</div></td>";
 		}
 		else
 		{
 			st += row;
 		}
+		
 		st += "</tr>";
 		
 		$table.append(st);
 	});
+}
+
+
+
+
+
+function addAttributeToTable(name, required, type, typedefault, merge, desc, status)
+{
+	var $table = $("#attributeTable > tbody");
 	
+	var st = "<tr>";
+		
+		var row = "";
+		
+		row += "<td class=\"cp3 name lightcolor\">" + name + "</td>";
+		row += "<td class=\"cp3 type lightcolor\">" + required + "</td>";
+		row += "<td class=\"cp3 type lightcolor\">" + type + "</td>";
+		row += "<td class=\"cp3 required lightcolor\">" + typedefault + "</td>";
+		row += "<td class=\"cp3 required lightcolor\">" + merge + "</td>";
+		row += "<td class=\"cp3 desc lightcolor\">" + desc + "</td>";
+		
+		var statusString = "";
+			switch(status)
+			{
+				case "inDevelopment":
+					statusString = "In Development";
+					break;
+				case "complete":
+					statusString = "Completed";
+					break;
+				case "isConcept":
+					statusString = "In Planning";
+					break;
+				case "toRemove":
+					statusString = "May Remove";
+					break;	
+				default:
+					break;
+			}
+		
+		row += "<td rowspan=\"" + 1 + "\" class=\"cp1 lightcolor\"><div class=\"solo " + status + " centerDiv\">" + statusString + "</div></td>";
+		
+		st += row;
+		st += "</tr>";
+		
+		$table.append(st);
 }

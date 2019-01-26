@@ -1,0 +1,125 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="../../css/feature_progress.css"/>
+		<link rel="stylesheet" href="../../css/fonts.css"/>
+		<link rel="stylesheet" href="../../css/tables.css"/>
+		
+		<link rel="stylesheet" href="../../plugins/prism/prism.css"/>
+	</head>
+	<body>
+		<script src="../../plugins/jquery/jquery-3_3_1-min.js"></script>
+		<script src="../../plugins/prism/prism.js"></script>
+		
+		
+		<script src="../../shared/js/table_functions.js"></script>
+		
+		<div id="progress_banner">
+			<span class="leftCorner complete">Is Complete</span>
+			<span class="center inDevelopment">In Development</span>
+			<span class="center isConcept">In Planning</span>
+			<div class="rightCorner toRemove">To Remove</div>
+		</div>
+		<br>
+		<div>
+			<div class="pageHeader">Block</div>
+			<div class="pageTags">	-tags: block, actor, no-visual, commands</div>
+		</div>
+		
+		<br><br>
+		
+		<div>
+			<div class="sectionHeader">Description</div>
+			<div> Blocks are containers for shared Commands{$addlink}. They have no visual component and as such, an app can contain many more block actors than other visual actors.</div>
+		</div>
+		
+		<br><br>
+		
+		<div>
+			<div class="sectionHeader">Features</div>
+			<div>
+				<table class="featureTable">
+					<tr>
+						
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+		<br><br>
+		
+		<div>
+			<div class="sectionHeader">Allowed Components</div>
+			<div class="sizeLimit">
+				<table id="childCompTable" class="componentTable">
+					<thead>
+						<tr>
+							<th colspan="3" class="cp2 darkercolor">Component Info</th>
+							<th class="cp4 hidden"></th>
+							<th colspan="2" class="cp2 darkercolor">Used Attribute Info</th>
+						</tr>
+						<tr>
+							<th class="cp3 name lightcolor">Name</th>
+							<th class="cp3 name lightcolor">Required?</th>
+							<th class="cp3 name lightcolor">Status</th>
+							
+							<th class="cp4"></th>
+							
+							<th class="cp3 name lightcolor">Name</th>
+							<th class="cp3 name lightcolor">Has Default?</th>
+						</tr>
+					</thead>
+					<tbody>
+						<script>
+						addComponentToTable("childCompTable", 
+						                     new Component("Execute", "../../sections/components/execute.html", "No",
+															[ new AttributeInfo("inner_trigger", "inner_trigger", "Yes")
+															]),
+											"inDevelopment");
+											
+						addComponentToTable("childCompTable", 
+						                     new Component("Identity", "../../sections/components/identity.html", "Yes" ,
+															[ 	new AttributeInfo("name", "name", "No"),
+																new AttributeInfo("tags", "tags", "Yes")
+															]),
+											"inDevelopment");
+											
+						addComponentToTable("childCompTable", 
+						                     new Component("Parameter", "../../sections/components/parameter.html", "No", 
+															[ new AttributeInfo("name", "name", "No"),
+															  new AttributeInfo("value", "value", "No")
+															]),
+											"isConcept");
+						
+						addComponentToTable("childCompTable", 
+						                     new Component("State", "../../sections/components/state.html", "No",
+															[ new AttributeInfo("activated", "activated", "Yes")
+															]),
+											"inDevelopment");
+						
+						</script>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+		<div>
+			<div class="sectionHeader">Examples</div>
+			<p class="usecase">When declaring a block in XML, {Component}Identity and {Component}State must be explicitly used, either in a child element or using the attributes in the base element.
+			
+			</p>
+			<pre style="width:50%" class="language-xml">
+				<code><!--
+					<block>
+						<identity name="block_1" tags="on_start,button_2"/>
+						<state activated="true"/>
+					</block>
+				--></code>
+			</pre>
+		</div>
+
+		<h5>Notes:</h5>
+		<ul>
+			<li></li>
+		</ul>
+	</body>
+</html>
